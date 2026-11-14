@@ -1,0 +1,4 @@
+import http from 'node:http';
+import {openDatabase} from './database.mjs';
+const {default:worker}=await import('../dist/server/index.js');let db=openDatabase('.local/ecoruta.sqlite');
+let server=http.createServer(async(req,res)=>{try{let chunks=[];for await(let c of req)chunks.push(c);let request=new Request('http://localhost:'+ (process.env.PORT||8787)+req.url,{method:req.method,headers:req.headers,...(!['GET','HEAD'].includes(req.method)?{body:Buffer.concat(chunks)}:{})});let response=await worker.fetch(request,{DB:db});res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));}catch(e){res.writeHead(500);res.end('Error interno.')}});server.listen(Number(process.env.PORT||8787),'127.0.0.1',()=>console.log('EcoRuta: http://localhost:'+(process.env.PORT||8787)));

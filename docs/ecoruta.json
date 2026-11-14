@@ -1,0 +1,595 @@
+{
+  "title": "EcoRuta Desarrollo del producto y evidencias",
+  "author": "Mauricio Alonso Guido Gallegos Inca",
+  "course": "Construcción y Pruebas de Software",
+  "teacher": "Edwin Córdova B.",
+  "program": "Diseño y Desarrollo de Software",
+  "semester": "IV",
+  "date": "13 de noviembre de 2026",
+  "repository": "https://github.com/mauriciogallegos-create/-EcoRuta",
+  "mvpUrl": null,
+  "miroUrl": null,
+  "status": "Documento de apoyo. El Discovery propio y la revisión externa todavía no están ejecutados. Las citas C-01 a C-04 pertenecen al caso docente. La implementación se basa en esas citas y debe contrastarse con la evidencia de campo antes de dar por validado el alcance.",
+  "outcome": "Reducir en un 20 % el gasto diario mediano de traslado al campus de los participantes de un piloto, durante cuatro semanas, respecto de su registro de gastos de la semana inicial.",
+  "metric": "Mediana de soles por día de traslado por participante. Registrar días comparables de estudio o trabajo, gasto inicial y gasto del piloto. Calcular (mediana inicial - mediana piloto) / mediana inicial × 100. Sin línea base propia, el 20 % es una meta propuesta y todavía no un resultado.",
+  "citations": [
+    {
+      "id": "C-01",
+      "person": "María",
+      "quote": "No sé cómo coordinar con desconocidos de forma segura y sin que se me haga tarde por dar muchas vueltas.",
+      "source": "Caso docente, página 2"
+    },
+    {
+      "id": "C-02",
+      "person": "Jorge",
+      "quote": "Preferiría compartir un carro pero no conozco a nadie que haga mi misma ruta.",
+      "source": "Caso docente, página 2"
+    },
+    {
+      "id": "C-03",
+      "person": "Ana",
+      "quote": "Lo que más me estresa no es el costo, es no saber si voy a llegar a tiempo.",
+      "source": "Caso docente, página 2"
+    },
+    {
+      "id": "C-04",
+      "person": "Luis",
+      "quote": "Me escribieron 10 personas a la vez. Fue un caos organizar quién iba al final.",
+      "source": "Caso docente, página 2"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "O-01",
+      "need": "N-01",
+      "title": "Encontrar compañeros con un recorrido y horario compatibles",
+      "citation": "C-02",
+      "person": "Jorge",
+      "description": "La coincidencia de ruta puede reducir el gasto sin exigir desvíos al conductor."
+    },
+    {
+      "id": "O-02",
+      "need": "N-02",
+      "title": "Saber quién viajará y cuántos cupos siguen disponibles",
+      "citation": "C-04",
+      "person": "Luis",
+      "description": "La coordinación necesita un acuerdo explícito entre conductor y pasajero."
+    },
+    {
+      "id": "O-03",
+      "need": "N-03",
+      "title": "Conocer la hora y el lugar acordados antes de salir",
+      "citation": "C-03",
+      "person": "Ana",
+      "description": "El estudiante necesita planificar su llegada y reconocer una cancelación."
+    },
+    {
+      "id": "O-04",
+      "need": "N-04",
+      "title": "Contar con información básica del compañero antes de compartir el trayecto",
+      "citation": "C-01",
+      "person": "María",
+      "description": "La identidad y las condiciones del encuentro son hipótesis de confianza por validar."
+    }
+  ],
+  "epics": [
+    {
+      "id": "E-01",
+      "title": "Como participante, quiero acceder con un perfil identificable",
+      "priority": 1,
+      "reason": "Dependencia técnica y riesgo: separar las acciones de conductor y pasajero. C-01 / N-04."
+    },
+    {
+      "id": "E-02",
+      "title": "Como conductor, quiero ofrecer un trayecto con condiciones claras",
+      "priority": 2,
+      "reason": "Dependencia: se necesita oferta antes de solicitar. Valor: publicar horario, punto y aporte. C-01, C-03 / N-01, N-03."
+    },
+    {
+      "id": "E-03",
+      "title": "Como pasajero, quiero encontrar viajes compatibles",
+      "priority": 3,
+      "reason": "Valor: conecta la demanda con la oferta y expone el aporte antes de decidir. C-02 / N-01."
+    },
+    {
+      "id": "E-04",
+      "title": "Como conductor y pasajero, quiero acordar y controlar los cupos",
+      "priority": 4,
+      "reason": "Mayor riesgo funcional: evitar duplicados y sobreventa. C-04 / N-02."
+    },
+    {
+      "id": "E-05",
+      "title": "Como participante, quiero consultar y actualizar el estado del viaje",
+      "priority": 5,
+      "reason": "Valor y cierre del flujo: saber si la coordinación sigue vigente. C-03, C-04 / N-02, N-03."
+    },
+    {
+      "id": "E-06",
+      "title": "Como participante, quiero evaluar la experiencia y reportar incidentes",
+      "priority": 6,
+      "reason": "Riesgo y aprendizaje posteriores: requiere viajes completados y política de atención. C-01 / N-04."
+    }
+  ],
+  "stories": [
+    {
+      "id": "H-01",
+      "epic": "E-01",
+      "title": "Acceso por perfil",
+      "story": "Como participante, quiero ingresar con mi perfil de conductor o pasajero para realizar las acciones que me corresponden.",
+      "points": 3,
+      "estimate": "Referencia de 3 puntos: sesión, dos roles y salida.",
+      "criteria": [
+        "Dado un usuario de prueba válido, cuando ingreso con sus credenciales, entonces veo su perfil y puedo recuperar la sesión al recargar.",
+        "Dadas credenciales erróneas o una petición sin sesión, cuando intento acceder, entonces recibo un rechazo y no obtengo acceso a los viajes."
+      ],
+      "citation": "C-01",
+      "need": "N-04",
+      "file": "src/auth.js",
+      "invest": [
+        "El acceso no exige publicar ni reservar.",
+        "Las cuentas y la duración de la sesión pueden ajustarse.",
+        "Permite distinguir responsabilidades.",
+        "Login, sesión y salida tienen límites claros.",
+        "Un flujo de credenciales con tres cuentas.",
+        "CA1 y CA2 se verifican con respuestas y sesión."
+      ],
+      "mvp": true,
+      "priority": 1,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-02",
+      "epic": "E-02",
+      "title": "Publicar un viaje",
+      "story": "Como conductor, quiero publicar origen, destino, salida, encuentro, cupos y aporte para ofrecer mi trayecto con condiciones claras.",
+      "points": 5,
+      "estimate": "Mayor que H-01: seis campos, reglas temporales y persistencia.",
+      "criteria": [
+        "Dado un conductor autenticado y datos válidos, cuando publica un viaje futuro, entonces queda guardado con origen, destino, encuentro, aporte y cupos.",
+        "Dada una salida pasada o una cantidad de cupos fuera de 1 a 6, cuando se publica, entonces el sistema rechaza el registro."
+      ],
+      "citation": "C-03",
+      "need": "N-03",
+      "file": "src/publish.js",
+      "invest": [
+        "Entrega oferta sin necesitar solicitudes.",
+        "Los límites de aporte pueden negociarse.",
+        "Evita coordinar condiciones por mensajes dispersos.",
+        "Los campos y validaciones acotan el esfuerzo.",
+        "Una sola publicación de trayecto.",
+        "Persistencia y validaciones son observables."
+      ],
+      "mvp": true,
+      "priority": 2,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-03",
+      "epic": "E-03",
+      "title": "Buscar viajes",
+      "story": "Como pasajero, quiero buscar por origen y fecha para encontrar un trayecto compatible con mi traslado.",
+      "points": 3,
+      "estimate": "Como H-01: filtros acotados y una lista con estados vacíos.",
+      "criteria": [
+        "Dado un viaje futuro publicado, cuando busco por su origen y fecha, entonces veo salida, encuentro, aporte y cupos libres del viaje coincidente.",
+        "Dada una combinación sin coincidencias, cuando busco, entonces recibo una lista vacía y un mensaje para cambiar los filtros."
+      ],
+      "citation": "C-02",
+      "need": "N-01",
+      "file": "src/search.js",
+      "invest": [
+        "Puede comprobarse con oferta de prueba.",
+        "Los filtros pueden ampliarse después.",
+        "Hace visible una ruta compartible.",
+        "Dos filtros, orden y resultados definidos.",
+        "No incluye mapa ni algoritmos de rutas.",
+        "Se contrastan lista coincidente y lista vacía."
+      ],
+      "mvp": true,
+      "priority": 3,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-04",
+      "epic": "E-04",
+      "title": "Solicitar un cupo",
+      "story": "Como pasajero, quiero enviar una solicitud para que el conductor sepa que deseo acompañarlo.",
+      "points": 3,
+      "estimate": "Como H-01: alta persistente con reglas de unicidad y disponibilidad.",
+      "criteria": [
+        "Dado un viaje futuro con cupos, cuando envío una solicitud, entonces queda pendiente y aún no consume un cupo confirmado.",
+        "Dada una solicitud pendiente o aceptada del mismo pasajero, cuando intenta solicitar otra vez ese viaje, entonces se rechaza el duplicado."
+      ],
+      "citation": "C-04",
+      "need": "N-02",
+      "file": "src/ask.js",
+      "invest": [
+        "La solicitud se comprueba antes de aceptarla.",
+        "La redacción de la confirmación es ajustable.",
+        "Ordena la intención de viajar.",
+        "Una solicitud por pasajero y viaje.",
+        "Una transición inicial de estado.",
+        "Se observa el estado y se intenta duplicar."
+      ],
+      "mvp": true,
+      "priority": 4,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-05",
+      "epic": "E-04",
+      "title": "Resolver solicitudes",
+      "story": "Como conductor, quiero aceptar o rechazar solicitudes para decidir quién viajará sin exceder mis cupos.",
+      "points": 5,
+      "estimate": "Mayor que H-01: autorización y aceptación atómica frente a competencia por cupos.",
+      "criteria": [
+        "Dado un conductor propietario y una solicitud pendiente, cuando la acepta o rechaza, entonces cambia su estado; un pasajero no puede ejecutar esta decisión.",
+        "Dado un viaje con un solo cupo y dos solicitudes, cuando se intentan aceptar ambas, entonces solo una se confirma y los cupos libres nunca son negativos."
+      ],
+      "citation": "C-04",
+      "need": "N-02",
+      "file": "src/decision.js",
+      "invest": [
+        "Se prueba con solicitudes precargadas.",
+        "La decisión puede ampliarse con un mensaje posterior.",
+        "Previene comprometer un asiento dos veces.",
+        "Dos decisiones y reglas de capacidad definidas.",
+        "No agrega lista de espera ni chat.",
+        "Dos aceptaciones competidoras comprueban el límite."
+      ],
+      "mvp": true,
+      "priority": 5,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-06",
+      "epic": "E-05",
+      "title": "Consultar confirmación",
+      "story": "Como participante, quiero consultar mis viajes y solicitudes para saber si mi acuerdo está confirmado.",
+      "points": 3,
+      "estimate": "Como H-01: consultas por propietario y continuidad de sesión.",
+      "criteria": [
+        "Dado un pasajero con solicitud aceptada, cuando abre Mis solicitudes, entonces ve la confirmación y el punto de encuentro.",
+        "Dado un cambio guardado, cuando cierro y reabro la aplicación o su base, entonces se conserva el estado y cada pasajero solo consulta sus propias solicitudes."
+      ],
+      "citation": "C-03",
+      "need": "N-03",
+      "file": "src/tracking.js",
+      "invest": [
+        "Consulta registros sin alterarlos.",
+        "Se puede mejorar la presentación de estados.",
+        "Reduce incertidumbre antes de salir.",
+        "Lecturas por perfil y campos definidos.",
+        "No exige notificaciones en tiempo real.",
+        "La consulta aislada y la reapertura son comprobables."
+      ],
+      "mvp": true,
+      "priority": 6,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-07",
+      "epic": "E-05",
+      "title": "Cancelar coordinación",
+      "story": "Como participante, quiero cancelar una solicitud o un viaje futuro para evitar que los demás cuenten con un acuerdo que ya no cumpliré.",
+      "points": 5,
+      "estimate": "Mayor que H-01: dos actores, cupos derivados y cancelación visible a terceros.",
+      "criteria": [
+        "Dada una solicitud aceptada en un viaje futuro abierto, cuando el pasajero la cancela, entonces queda cancelada y vuelve a quedar libre su cupo.",
+        "Dado un viaje futuro abierto, cuando el conductor lo cancela, entonces desaparece de la búsqueda y sus solicitudes se muestran canceladas."
+      ],
+      "citation": "C-04",
+      "need": "N-02",
+      "file": "src/cancellation.js",
+      "invest": [
+        "Se prueba sobre coordinaciones de ejemplo.",
+        "El plazo de cancelación puede revisarse.",
+        "Evita acuerdos desactualizados.",
+        "Dos cancelaciones y límite antes de salida.",
+        "No incluye penalizaciones ni reembolsos.",
+        "Estados, búsqueda y cupos prueban sus efectos."
+      ],
+      "mvp": true,
+      "priority": 7,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-08",
+      "epic": "E-05",
+      "title": "Finalizar viaje",
+      "story": "Como conductor, quiero finalizar un recorrido después de su salida para conservar su estado en el historial.",
+      "points": 2,
+      "estimate": "Menor que H-01: una transición de estado con restricción temporal.",
+      "criteria": [
+        "Dado un viaje cuya salida aún no ocurrió, cuando intento finalizarlo, entonces se rechaza el cierre anticipado.",
+        "Dado mi viaje abierto cuya salida ya ocurrió, cuando lo finalizo, entonces se conserva como finalizado en Mis viajes y no admite nuevas solicitudes."
+      ],
+      "citation": "C-03",
+      "need": "N-03",
+      "file": "src/completion.js",
+      "invest": [
+        "Se prueba con un viaje y reloj de referencia.",
+        "Puede añadirse hora de llegada en otra historia.",
+        "Distingue oferta activa de recorrido cerrado.",
+        "Una transición y una consulta de historial.",
+        "No registra GPS ni telemetría.",
+        "Se prueban reloj previo, cierre y bloqueo de solicitudes."
+      ],
+      "mvp": true,
+      "priority": 8,
+      "status": "Código implementado; verificación en línea pendiente"
+    },
+    {
+      "id": "H-09",
+      "epic": "E-02",
+      "title": "Editar un viaje sin solicitudes",
+      "story": "Como conductor, quiero corregir un viaje sin solicitudes para actualizar condiciones antes de coordinar con alguien.",
+      "points": 3,
+      "estimate": "Como H-01: edición acotada con bloqueo por estado.",
+      "criteria": [
+        "Dado mi viaje futuro sin solicitudes activas, cuando corrijo su encuentro y hora con valores válidos, entonces quedan guardados.",
+        "Dado un viaje con una solicitud pendiente o aceptada, cuando intento editar sus condiciones, entonces el cambio se rechaza."
+      ],
+      "citation": "C-03",
+      "need": "N-03",
+      "file": null,
+      "invest": [
+        "Entrega edición independiente de cancelación.",
+        "Se negocian los campos editables.",
+        "Evita publicar otra oferta por una corrección.",
+        "Se limita a viajes sin acuerdos activos.",
+        "Una edición con regla de bloqueo.",
+        "Ambos casos se comprobarán al implementarla."
+      ],
+      "mvp": false,
+      "priority": 9,
+      "status": "Fuera del MVP"
+    },
+    {
+      "id": "H-10",
+      "epic": "E-03",
+      "title": "Filtrar aporte máximo",
+      "story": "Como pasajero, quiero limitar el aporte mostrado para encontrar opciones que entren en mi presupuesto.",
+      "points": 2,
+      "estimate": "Menor que H-01: un filtro adicional sobre la búsqueda.",
+      "criteria": [
+        "Dados viajes de diferentes aportes, cuando fijo un máximo de S/ 5, entonces solo aparecen viajes con aporte menor o igual a S/ 5.",
+        "Dado un máximo negativo o no numérico, cuando envío el filtro, entonces se muestra un error sin ejecutar una búsqueda válida."
+      ],
+      "citation": "C-02",
+      "need": "N-01",
+      "file": null,
+      "invest": [
+        "Es un incremento sobre la búsqueda existente.",
+        "Se negocia el rango del filtro.",
+        "Apoya decisiones con presupuesto limitado.",
+        "Un filtro numérico y un error de validación.",
+        "No compara tarifas externas.",
+        "La frontera y el valor inválido son medibles."
+      ],
+      "mvp": false,
+      "priority": 10,
+      "status": "Fuera del MVP"
+    },
+    {
+      "id": "H-11",
+      "epic": "E-06",
+      "title": "Evaluar el recorrido",
+      "story": "Como pasajero confirmado, quiero calificar un viaje finalizado para registrar mi experiencia.",
+      "points": 5,
+      "estimate": "Mayor que H-01: autorización, unicidad y agregación de valoraciones.",
+      "criteria": [
+        "Dado un viaje finalizado con mi solicitud aceptada, cuando asigno una puntuación de 1 a 5, entonces se guarda una única valoración mía.",
+        "Dado un viaje no finalizado o sin mi participación confirmada, cuando intento calificarlo, entonces se rechaza."
+      ],
+      "citation": "C-01",
+      "need": "N-04",
+      "file": null,
+      "invest": [
+        "El registro de valoración tiene un resultado propio.",
+        "La escala y visibilidad pueden negociarse.",
+        "Puede aportar señales de experiencia previa.",
+        "Participación, estado y escala definidos.",
+        "Una valoración sin comentarios públicos.",
+        "Se comprueban permisos y puntuaciones válidas."
+      ],
+      "mvp": false,
+      "priority": 11,
+      "status": "Fuera del MVP"
+    },
+    {
+      "id": "H-12",
+      "epic": "E-06",
+      "title": "Reportar un incidente",
+      "story": "Como participante, quiero registrar un incidente de un viaje en el que participé para que EcoRuta pueda revisarlo.",
+      "points": 5,
+      "estimate": "Mayor que H-01: categorías, privacidad y recepción del reporte.",
+      "criteria": [
+        "Dado un viaje en el que soy conductor o pasajero confirmado, cuando selecciono una categoría y descripción válida, entonces recibo un identificador del reporte.",
+        "Dado un usuario ajeno al viaje, cuando intenta registrar o consultar el reporte, entonces el acceso se rechaza."
+      ],
+      "citation": "C-01",
+      "need": "N-04",
+      "file": null,
+      "invest": [
+        "Genera un reporte sin depender de una valoración.",
+        "Se negocian categorías y plazos de atención.",
+        "Apoya la revisión de situaciones de confianza.",
+        "Un reporte privado con pertenencia al viaje.",
+        "No intenta resolver incidentes automáticamente.",
+        "Se prueba el identificador y el control de acceso."
+      ],
+      "mvp": false,
+      "priority": 12,
+      "status": "Fuera del MVP"
+    }
+  ],
+  "interviewQuestions": [
+    "Cuéntame cómo fue tu último traslado al centro de estudios o trabajo.",
+    "¿Cuándo llegaste tarde por última vez y qué ocurrió?",
+    "¿Cuánto pagaste ese día y en qué medios de transporte?",
+    "Cuéntame la última vez que compartiste un carro o intentaste coordinar un traslado.",
+    "¿Qué mensajes o pasos necesitaste para acordar horario, encuentro y aporte?",
+    "¿Qué hiciste cuando alguien canceló o cambió lo acordado?"
+  ],
+  "experiment": {
+    "risk": "Valor y confianza: aun con coincidencia de horario y ruta, las personas podrían no aceptar coordinar un viaje con alguien nuevo.",
+    "method": "Experimento concierge sin código. Reclutar voluntarios con consentimiento; recoger ruta aproximada y horario sin publicar direcciones personales. Formar al menos 3 grupos compatibles, presentar a los participantes por un canal privado y pedir una confirmación explícita de un trayecto dentro de 7 días. La coordinación y las observaciones reales se registran de forma anonimizada; no se publican viajes reales en el MVP.",
+    "confirm": "Confirmar la hipótesis si al menos el 60 % de los grupos propuestos completa un viaje compartido y reporta llegada dentro de ±5 minutos del horario acordado.",
+    "reject": "Descartar la hipótesis si menos del 30 % completa el viaje o aparecen rechazos de confianza que impiden continuar; si el resultado queda entre ambos umbrales, declarar inconcluso y ajustar el experimento.",
+    "data": "Pendiente de ejecución. Registrar número de grupos, confirmaciones, viajes completados, puntualidad, gasto y motivos de abandono. Si participan menos de 3 grupos, declarar evidencia insuficiente.",
+    "decision": "Pendiente de datos. No se afirma validación de valor, confianza ni reducción del gasto."
+  },
+  "vision": {
+    "vision": "Que los estudiantes puedan llegar al campus con un traslado coordinado y un gasto compartido previsible.",
+    "target": "Estudiantes de Tecsup con carro y cupos disponibles; estudiantes sin carro con rutas y horarios compatibles; personas que trabajan antes de clase.",
+    "needs": [
+      "N-01 Coincidir con personas de ruta compatible y conocer el aporte. O-01 / C-02.",
+      "N-02 Saber quién tiene un cupo confirmado y evitar acuerdos duplicados. O-02 / C-04.",
+      "N-03 Conocer hora, encuentro y vigencia del acuerdo antes de salir. O-03 / C-03.",
+      "N-04 Distinguir quién conduce y quién solicita. O-04 / C-01. Es una identificación de prueba; no acredita identidad real."
+    ],
+    "product": [
+      "Publicación de trayectos con aporte, hora y punto acordados.",
+      "Búsqueda simple por origen y fecha.",
+      "Solicitud y aceptación explícitas sin superar los cupos.",
+      "Estado de la coordinación e historial de viajes."
+    ],
+    "goals": [
+      "Lograr que el 60 % de los grupos compatibles complete al menos un viaje en la primera semana del piloto.",
+      "Reducir en 20 % el gasto mediano diario de traslado en cuatro semanas, frente a la línea base.",
+      "Mantener 0 confirmaciones por encima de la capacidad en las pruebas de aceptación."
+    ]
+  },
+  "founders": [
+    [
+      "Mapa en tiempo real",
+      "Fuera del MVP",
+      "C-03 demanda previsibilidad, pero no demuestra que el GPS sea necesario. Primero se prueba horario y encuentro explícitos. Considerarlo solo si persiste la incertidumbre y hay evidencia adicional."
+    ],
+    [
+      "Pagos integrados",
+      "Fuera del MVP",
+      "C-02 evidencia presión de gasto; no evidencia dificultad para cobrar. Mostrar el aporte y acordar el pago fuera del producto permite observar el valor antes de integrar cobros."
+    ],
+    [
+      "Reconocimiento facial",
+      "Fuera del MVP",
+      "C-01 evidencia desconfianza, pero no valida biometría como respuesta. Requiere un análisis adicional de consentimiento, costo y manejo de datos. Las cuentas de prueba solo distinguen roles."
+    ]
+  ],
+  "scope": "Línea de corte después de H-08: 8 historias, 29 puntos. Flujo completo: conductor ingresa y publica; pasajero busca y solicita; conductor confirma; pasajero consulta; ambos pueden cancelar antes de salir; el conductor finaliza el recorrido después de la salida. El alcance permite probar la coordinación y disponibilidad. Medir reducción real del gasto exige ejecutar el piloto externo; la app por sí sola no demuestra el outcome.",
+  "dod": [
+    "Los dos criterios de la historia están comprobados y se conserva la evidencia.",
+    "Las reglas y permisos se verifican del lado servidor, con datos ficticios.",
+    "Las pruebas de aceptación pertinentes pasan sin romper las anteriores.",
+    "La rama de la historia tiene commits que citan su identificador y se revisa antes de integrar.",
+    "La historia está desplegada y verificada en línea desde una sesión limpia.",
+    "La matriz relaciona cita, oportunidad, necesidad, épica, historia, criterio, commit y evidencia de la versión desplegada."
+  ],
+  "sprints": [
+    {
+      "name": "Sprint propuesto 1",
+      "goal": "Permitir acceso, publicación, búsqueda y solicitud de un viaje.",
+      "stories": [
+        "H-01",
+        "H-02",
+        "H-03",
+        "H-04"
+      ],
+      "tasks": [
+        [
+          "H-01",
+          "Sesión, perfiles y errores de acceso",
+          2
+        ],
+        [
+          "H-02",
+          "Formulario, validaciones y persistencia",
+          3
+        ],
+        [
+          "H-03",
+          "Búsqueda, zona horaria y estado vacío",
+          2
+        ],
+        [
+          "H-04",
+          "Solicitud única y validaciones de disponibilidad",
+          2
+        ],
+        [
+          "Transversal",
+          "Pruebas y revisión del incremento desplegado",
+          2
+        ]
+      ],
+      "capacity": "11 horas estimadas de esfuerzo; la disponibilidad real del estudiante está por confirmar."
+    },
+    {
+      "name": "Sprint propuesto 2",
+      "goal": "Confirmar cupos, mantener estados y cerrar la coordinación.",
+      "stories": [
+        "H-05",
+        "H-06",
+        "H-07",
+        "H-08"
+      ],
+      "tasks": [
+        [
+          "H-05",
+          "Aceptación atómica y permisos",
+          3
+        ],
+        [
+          "H-06",
+          "Consultas por perfil y recuperación de estado",
+          2
+        ],
+        [
+          "H-07",
+          "Cancelación y cálculo de disponibilidad",
+          2
+        ],
+        [
+          "H-08",
+          "Cierre temporal e historial",
+          1
+        ],
+        [
+          "Transversal",
+          "Pruebas, matriz, despliegue y revisión externa",
+          3
+        ]
+      ],
+      "capacity": "11 horas estimadas de esfuerzo; reservar tiempo adicional para entrevistas y experimento. No equivale a horas ya trabajadas."
+    }
+  ],
+  "worklog": "Solo existe registro de esta sesión de construcción. No hay cinco días de trabajo verificables. El tablero y el burndown deben completarse con registros reales del estudiante; no se reconstruye un historial ficticio.",
+  "impediment": "Observado: el acceso a GitHub desde la terminal restringida falló; se confirmó el repositorio mediante la conexión autenticada y se recuperó el acceso de Git desde el entorno de construcción. El acceso de Miro sigue pendiente de verificación.",
+  "review": "Pendiente de una Sprint Review con 2 personas externas sobre el MVP desplegado. Recoger al menos 2 observaciones, decidir su efecto en el backlog y comparar lo aprendido con el outcome. La aprobación técnica automatizada no reemplaza a estas personas.",
+  "retro": {
+    "good": "Se definió un flujo completo y las comprobaciones automatizadas detectan duplicados, permisos incorrectos y exceso de cupos.",
+    "bad": "No se disponía de evidencia propia de Discovery antes de construir y falló el acceso inicial a algunas herramientas.",
+    "improvements": [
+      "Ejecutar las entrevistas y el experimento antes de ampliar el alcance; registrar cita, fecha, resultado y decisión el mismo día.",
+      "Reservar un bloque de despliegue y prueba con usuarios al inicio de cada sprint; registrar el defecto y su verificación en línea antes de cerrar una historia."
+    ]
+  },
+  "launch": "Pendiente de confirmar URL pública, funcionamiento en una sesión limpia y criterios de aceptación desplegados. No se ha comunicado el lanzamiento a personas externas.",
+  "pending": [
+    "Evidencia 2: tres entrevistas propias con seudónimos, fechas y citas literales.",
+    "Evidencia 4: experimento ejecutado con umbrales previos, datos y decisión.",
+    "Evidencia 12: capacidad real confirmada por el estudiante.",
+    "Evidencia 14: cinco días reales, burndown ideal y real, y seguimiento de impedimentos.",
+    "Evidencia 18: revisión real con dos personas externas.",
+    "Miro: tablero exclusivo y acceso de visualización por enlace.",
+    "Evidencias 15, 17 y 20: completar verificación pública y lanzamiento."
+  ],
+  "references": [
+    "Córdova B., E. (2026). Evaluación de Recuperación — Caso EcoRuta. Tecsup. Enunciado de 13 páginas proporcionado por el docente.",
+    "Fitzpatrick, R. (2013). The Mom Test. Referencia indicada por el enunciado.",
+    "Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Referencia indicada por el enunciado.",
+    "Pichler, R. (2016). Strategize. Referencia indicada por el enunciado."
+  ]
+}
