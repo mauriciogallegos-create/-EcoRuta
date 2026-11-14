@@ -309,6 +309,8 @@ Solo existe registro de esta sesión de construcción. No hay cinco días de tra
 Impedimento: Observado: el acceso a GitHub desde la terminal restringida falló; se confirmó el repositorio mediante la conexión autenticada y se recuperó el acceso de Git desde el entorno de construcción. El acceso de Miro sigue pendiente de verificación.
 
 ### Evidencia 15 · MVP
+URL pública: https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site
+16 criterios comprobados por HTTP en línea. Revisión visual en incógnito pendiente.
 Acceso de prueba: conductor@ecoruta.test, pasajero@ecoruta.test y pasajero2@ecoruta.test. Contraseña común de demostración: EcoRuta2026!
 
 ### Evidencia 16 · Registro de cambios
@@ -317,7 +319,7 @@ Se mantiene el corte de 8 historias. Se precisó que una solicitud pendiente no 
 ## Parte 5 — Cierre
 
 ### Evidencia 17 · Matriz del hilo conductor
-Ver MATRIZ_TRAZABILIDAD.csv: una fila por cada uno de los 16 criterios del MVP. No marcar Cumple hasta comprobar la versión desplegada.
+Ver MATRIZ_TRAZABILIDAD.csv: una fila por cada uno de los 16 criterios del MVP. Los 16 criterios se comprobaron por HTTP contra la versión desplegada. Revisión visual en incógnito pendiente.
 
 ### Evidencia 18 · Sprint Review
 Pendiente de una Sprint Review con 2 personas externas sobre el MVP desplegado. Recoger al menos 2 observaciones, decidir su efecto en el backlog y comparar lo aprendido con el outcome. La aprobación técnica automatizada no reemplaza a estas personas.
@@ -329,7 +331,7 @@ Por mejorar: No se disponía de evidencia propia de Discovery antes de construir
 2. Reservar un bloque de despliegue y prueba con usuarios al inicio de cada sprint; registrar el defecto y su verificación en línea antes de cerrar una historia.
 
 ### Evidencia 20 · Lanzamiento
-Pendiente de confirmar URL pública, funcionamiento en una sesión limpia y criterios de aceptación desplegados. No se ha comunicado el lanzamiento a personas externas.
+MVP publicado en https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site. Se verificaron por HTTP los 16 criterios de aceptación contra la versión desplegada del commit b9dd1b8. Persistencia de base tras reapertura comprobada localmente; continuidad de estados comprobada en línea tras salir y volver a ingresar. Falta revisión visual en incógnito y comunicación a revisores externos. No se declara realizado un piloto con personas.
 
 ### Evidencia real pendiente
 - Evidencia 2: tres entrevistas propias con seudónimos, fechas y citas literales.

@@ -1,0 +1,92 @@
+{
+  "url": "https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site",
+  "checkedAt": "2026-11-14T04:41:14.175Z",
+  "sourceCommit": "b9dd1b856d69bd0d875bbf1179776262804c4d2a",
+  "kind": "Pruebas HTTP contra la versión desplegada. No sustituye comprobación visual en incógnito ni entrevistas. La reapertura de base se verificó localmente; en línea se verificó continuidad tras nuevo acceso.",
+  "testTrips": [
+    "f9a06a7e-05f2-46ee-bba6-b7a4368ab1a9",
+    "e3c25377-d270-474c-8382-d12fa2eff480"
+  ],
+  "results": [
+    {
+      "criterion": "H-01-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:41.523Z"
+    },
+    {
+      "criterion": "H-01-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:43.364Z"
+    },
+    {
+      "criterion": "H-02-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:43.978Z"
+    },
+    {
+      "criterion": "H-02-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:44.796Z"
+    },
+    {
+      "criterion": "H-03-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:45.514Z"
+    },
+    {
+      "criterion": "H-03-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:46.330Z"
+    },
+    {
+      "criterion": "H-04-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:47.881Z"
+    },
+    {
+      "criterion": "H-04-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:49.814Z"
+    },
+    {
+      "criterion": "H-05-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:50.326Z"
+    },
+    {
+      "criterion": "H-05-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:52.171Z"
+    },
+    {
+      "criterion": "H-06-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:52.784Z"
+    },
+    {
+      "criterion": "H-06-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:56.266Z"
+    },
+    {
+      "criterion": "H-07-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:40:57.597Z"
+    },
+    {
+      "criterion": "H-07-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:40:59.541Z"
+    },
+    {
+      "criterion": "H-08-CA1",
+      "pass": true,
+      "at": "2026-11-14T04:41:00.873Z"
+    },
+    {
+      "criterion": "H-08-CA2",
+      "pass": true,
+      "at": "2026-11-14T04:41:12.350Z"
+    }
+  ]
+}

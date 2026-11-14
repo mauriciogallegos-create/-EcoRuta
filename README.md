@@ -4,7 +4,9 @@ MVP académico para coordinar viajes compartidos hacia Tecsup. Permite publicar 
 
 ## Probar el producto
 
-URL pública: pendiente de despliegue y verificación.
+URL pública: **https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site**
+
+Los 16 criterios del MVP se verificaron por HTTP contra la versión desplegada; ver [registro real](docs/VERIFICACION_EN_LINEA.json). Revisión visual en incógnito y tablero de Miro pendientes.
 
 | Perfil | Correo | Contraseña de demostración |
 | --- | --- | --- |

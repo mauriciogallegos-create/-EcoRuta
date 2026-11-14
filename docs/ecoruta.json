@@ -7,7 +7,7 @@
   "semester": "IV",
   "date": "13 de noviembre de 2026",
   "repository": "https://github.com/mauriciogallegos-create/-EcoRuta",
-  "mvpUrl": null,
+  "mvpUrl": "https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site",
   "miroUrl": null,
   "status": "Documento de apoyo. El Discovery propio y la revisión externa todavía no están ejecutados. Las citas C-01 a C-04 pertenecen al caso docente. La implementación se basa en esas citas y debe contrastarse con la evidencia de campo antes de dar por validado el alcance.",
   "outcome": "Reducir en un 20 % el gasto diario mediano de traslado al campus de los participantes de un piloto, durante cuatro semanas, respecto de su registro de gastos de la semana inicial.",
@@ -135,7 +135,8 @@
       ],
       "mvp": true,
       "priority": 1,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "632264023df1fe21305409c7ae92ef5b2d0cebad"
     },
     {
       "id": "H-02",
@@ -161,7 +162,8 @@
       ],
       "mvp": true,
       "priority": 2,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "0a6b756ecb950038e1a83da4db09b8cd1d3cd906"
     },
     {
       "id": "H-03",
@@ -187,7 +189,8 @@
       ],
       "mvp": true,
       "priority": 3,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "8c3e985dd99d57c771e716d85cacfa8233689b01"
     },
     {
       "id": "H-04",
@@ -213,7 +216,8 @@
       ],
       "mvp": true,
       "priority": 4,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "fc42f4ed14277616ca47798afe5f8756e096aab1"
     },
     {
       "id": "H-05",
@@ -239,7 +243,8 @@
       ],
       "mvp": true,
       "priority": 5,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "5ae5d498486db1667708190fc85809d458845369"
     },
     {
       "id": "H-06",
@@ -265,7 +270,8 @@
       ],
       "mvp": true,
       "priority": 6,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "b57ea8cc9b233600f259f405b0e90a0a23901d01"
     },
     {
       "id": "H-07",
@@ -291,7 +297,8 @@
       ],
       "mvp": true,
       "priority": 7,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "b42e62a409c56767061dd12c385eed91d707e2a4"
     },
     {
       "id": "H-08",
@@ -317,7 +324,8 @@
       ],
       "mvp": true,
       "priority": 8,
-      "status": "Código implementado; verificación en línea pendiente"
+      "status": "Implementada; 2 criterios comprobados por HTTP en línea. Comprobación visual en incógnito pendiente.",
+      "commit": "d0f358791ef9f114e688ad5fd448c2ae1a13a0eb"
     },
     {
       "id": "H-09",
@@ -576,7 +584,7 @@
       "Reservar un bloque de despliegue y prueba con usuarios al inicio de cada sprint; registrar el defecto y su verificación en línea antes de cerrar una historia."
     ]
   },
-  "launch": "Pendiente de confirmar URL pública, funcionamiento en una sesión limpia y criterios de aceptación desplegados. No se ha comunicado el lanzamiento a personas externas.",
+  "launch": "MVP publicado en https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site. Se verificaron por HTTP los 16 criterios de aceptación contra la versión desplegada del commit b9dd1b8. Persistencia de base tras reapertura comprobada localmente; continuidad de estados comprobada en línea tras salir y volver a ingresar. Falta revisión visual en incógnito y comunicación a revisores externos. No se declara realizado un piloto con personas.",
   "pending": [
     "Evidencia 2: tres entrevistas propias con seudónimos, fechas y citas literales.",
     "Evidencia 4: experimento ejecutado con umbrales previos, datos y decisión.",
@@ -584,12 +592,105 @@
     "Evidencia 14: cinco días reales, burndown ideal y real, y seguimiento de impedimentos.",
     "Evidencia 18: revisión real con dos personas externas.",
     "Miro: tablero exclusivo y acceso de visualización por enlace.",
-    "Evidencias 15, 17 y 20: completar verificación pública y lanzamiento."
+    "Evidencias 15 y 20: comprobar visualmente el flujo en incógnito; registrar la comunicación real del lanzamiento."
   ],
   "references": [
     "Córdova B., E. (2026). Evaluación de Recuperación — Caso EcoRuta. Tecsup. Enunciado de 13 páginas proporcionado por el docente.",
     "Fitzpatrick, R. (2013). The Mom Test. Referencia indicada por el enunciado.",
     "Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Referencia indicada por el enunciado.",
     "Pichler, R. (2016). Strategize. Referencia indicada por el enunciado."
-  ]
+  ],
+  "onlineTest": {
+    "url": "https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site",
+    "checkedAt": "2026-11-14T04:41:14.175Z",
+    "sourceCommit": "b9dd1b856d69bd0d875bbf1179776262804c4d2a",
+    "kind": "Pruebas HTTP contra la versión desplegada. No sustituye comprobación visual en incógnito ni entrevistas. La reapertura de base se verificó localmente; en línea se verificó continuidad tras nuevo acceso.",
+    "testTrips": [
+      "f9a06a7e-05f2-46ee-bba6-b7a4368ab1a9",
+      "e3c25377-d270-474c-8382-d12fa2eff480"
+    ],
+    "results": [
+      {
+        "criterion": "H-01-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:41.523Z"
+      },
+      {
+        "criterion": "H-01-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:43.364Z"
+      },
+      {
+        "criterion": "H-02-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:43.978Z"
+      },
+      {
+        "criterion": "H-02-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:44.796Z"
+      },
+      {
+        "criterion": "H-03-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:45.514Z"
+      },
+      {
+        "criterion": "H-03-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:46.330Z"
+      },
+      {
+        "criterion": "H-04-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:47.881Z"
+      },
+      {
+        "criterion": "H-04-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:49.814Z"
+      },
+      {
+        "criterion": "H-05-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:50.326Z"
+      },
+      {
+        "criterion": "H-05-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:52.171Z"
+      },
+      {
+        "criterion": "H-06-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:52.784Z"
+      },
+      {
+        "criterion": "H-06-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:56.266Z"
+      },
+      {
+        "criterion": "H-07-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:40:57.597Z"
+      },
+      {
+        "criterion": "H-07-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:40:59.541Z"
+      },
+      {
+        "criterion": "H-08-CA1",
+        "pass": true,
+        "at": "2026-11-14T04:41:00.873Z"
+      },
+      {
+        "criterion": "H-08-CA2",
+        "pass": true,
+        "at": "2026-11-14T04:41:12.350Z"
+      }
+    ]
+  },
+  "integrationCommit": "b9dd1b856d69bd0d875bbf1179776262804c4d2a"
 }
