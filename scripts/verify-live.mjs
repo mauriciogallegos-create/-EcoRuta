@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-const base=process.argv[2];if(!base||!base.startsWith('https://'))throw Error('Indica una URL HTTPS.');
+const base=process.argv[2]?.replace(/\/$/,'');const report=process.argv[3]||'docs/VERIFICACION_EN_LINEA.json';if(!base||!base.startsWith('https://'))throw Error('Indica una URL HTTPS.');
 const cookies={},results=[];let tripId,r1,r2,closeId;
-async function call(path,method='GET',body,actor='driver'){let r=await fetch(base+'/api/'+path,{method,headers:{...(cookies[actor]?{cookie:cookies[actor]}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});let j=await r.json();return {status:r.status,body:j,cookie:r.headers.get('set-cookie')};}
+async function call(path,method='GET',body,actor='driver'){let r=await fetch(base+'/api/'+path,{method,headers:{...(method==='POST'?{Origin:new URL(base).origin}:{}),...(cookies[actor]?{cookie:cookies[actor]}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});let j=await r.json();return {status:r.status,body:j,cookie:r.headers.get('set-cookie')};}
 async function check(id,fn){await fn();results.push({criterion:id,pass:true,at:new Date().toISOString()});console.log('PASS '+id)}
 try{
 await check('H-01-CA1',async()=>{for(let [a,e]of [['driver','conductor'],['p1','pasajero'],['p2','pasajero2']]){let r=await call('login','POST',{email:e+'@ecoruta.test',password:'EcoRuta2026!'},a);assert.equal(r.status,200);cookies[a]=r.cookie.split(';')[0];assert.ok((await call('session','GET',null,a)).body.user)}});
@@ -27,6 +27,6 @@ await check('H-08-CA1',async()=>{let r=await call('trips','POST',{...data,origin
 await new Promise(r=>setTimeout(r,8500));
 await check('H-08-CA2',async()=>{assert.equal((await call('trips/'+closeId+'/complete','POST')).status,200);assert.equal((await call('mine')).body.trips.find(x=>x.id===closeId).status,'completed');assert.equal((await call('trips/'+closeId+'/request','POST',null,'p1')).status,409)});
 for(let a of ['driver','p1','p2'])await call('logout','POST',null,a);
-fs.writeFileSync('docs/VERIFICACION_EN_LINEA.json',JSON.stringify({url:base,checkedAt:new Date().toISOString(),sourceCommit:'b9dd1b856d69bd0d875bbf1179776262804c4d2a',kind:'Pruebas HTTP contra la versión desplegada. No sustituye comprobación visual en incógnito ni entrevistas. La reapertura de base se verificó localmente; en línea se verificó continuidad tras nuevo acceso.',testTrips:[tripId,closeId],results},null,2));
+fs.writeFileSync(report,JSON.stringify({url:base,checkedAt:new Date().toISOString(),sourceCommit:'b9dd1b856d69bd0d875bbf1179776262804c4d2a',kind:'Pruebas HTTP contra la versión desplegada. No sustituye comprobación visual en incógnito ni entrevistas. La reapertura de base se verificó localmente; en línea se verificó continuidad tras nuevo acceso.',testTrips:[tripId,closeId],results},null,2));
 console.log('16 criterios verificados por HTTP en producción.');
-}catch(e){console.error(e);fs.writeFileSync('docs/VERIFICACION_EN_LINEA.json',JSON.stringify({url:base,checkedAt:new Date().toISOString(),results,error:e.message},null,2));process.exitCode=1;}
+}catch(e){console.error(e);fs.writeFileSync(report,JSON.stringify({url:base,checkedAt:new Date().toISOString(),results,error:e.message},null,2));process.exitCode=1;}

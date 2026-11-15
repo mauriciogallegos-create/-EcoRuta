@@ -6,7 +6,7 @@ MVP académico para coordinar viajes compartidos hacia Tecsup. Permite publicar 
 
 URL pública: **https://ecoruta-mauricio-tecsup.wirygoldfish.chatgpt.site**
 
-Los 16 criterios del MVP se verificaron por HTTP contra la versión desplegada; ver [registro real](docs/VERIFICACION_EN_LINEA.json). Revisión visual en incógnito y tablero de Miro pendientes.
+Los 16 criterios del MVP se verificaron por HTTP contra la versión desplegada; ver [registro real](docs/VERIFICACION_EN_LINEA.json). También se comprobó el acceso como pasajero en incógnito y la visualización del tablero de Miro mediante enlace. Estas comprobaciones corresponden al despliegue original, no al futuro dominio de Netlify.
 
 | Perfil | Correo | Contraseña de demostración |
 | --- | --- | --- |
@@ -51,21 +51,26 @@ Abre `http://localhost:8787`. Los datos locales se guardan en `.local/ecoruta.sq
 
 El despliegue aplica la migración de esquema, enlaza `DB` y publica el Worker por HTTPS. Las cuentas y un viaje de muestra se insertan de forma idempotente en el primer acceso. No se almacenan claves de servicios en el repositorio. Las sesiones se guardan como hashes de tokens aleatorios; no se registra su valor en logs.
 
+### Publicación en Netlify
+
+La configuración está preparada en `netlify.toml`: interfaz estática y función API que conserva el servidor y la base D1 actuales. El nuevo dominio todavía debe publicarse y verificarse. Ver [configuración y comprobaciones](docs/DESPLIEGUE_NETLIFY.md).
+
 ## Historias y pruebas
 
 MVP: H-01 a H-08, 29 puntos. Backlog posterior: H-09 a H-12. Las ramas `feature/H-01-acceso` a `feature/H-08-finalizacion` conservan los cambios por historia. La interfaz y las rutas integran el flujo completo en un commit compartido. La integración de código precede la comprobación pública; la Definition of Done no se declara cumplida hasta verificar la versión desplegada.
 
-`npm test` ejecuta 18 comprobaciones funcionales, incluyendo credenciales incorrectas, permisos por rol, campos inválidos, solicitudes duplicadas, competencia por un solo cupo, cancelaciones, separación de datos entre pasajeros y persistencia después de reabrir la base. Estas pruebas locales usan SQLite; la matriz distingue su resultado de la verificación en línea con D1.
+`npm test` ejecuta 18 comprobaciones funcionales del MVP y 5 pruebas de la conexión para Netlify. Las comprobaciones del MVP cubren los siguientes casos: credenciales incorrectas, permisos por rol, campos inválidos, solicitudes duplicadas, competencia por un solo cupo, cancelaciones, separación de datos entre pasajeros y persistencia después de reabrir la base. Estas pruebas locales usan SQLite; la matriz distingue su resultado de la verificación en línea con D1.
 
 ## Evidencias de evaluación
 
+- [Tablero de Miro](https://miro.com/app/board/uXjVEOZ1Iyc=/).
 - [Discovery, visión, backlog y cierre para Miro](docs/CONTENIDO_MIRO.md).
 - [12 historias, criterios e INVEST en formato estructurado](docs/ecoruta.json).
 - [Matriz de 16 criterios de aceptación](docs/MATRIZ_TRAZABILIDAD.csv).
 - [Guías de entrevistas, experimento y revisión externa](docs/ENTREVISTAS_Y_REVIEW.md).
 - [Registro de cinco días por completar con datos reales](docs/SEGUIMIENTO.csv).
 
-Las citas C-01 a C-04 provienen del caso docente y no se presentan como entrevistas propias. Están pendientes las tres entrevistas, el experimento ejecutado, la capacidad real, los cinco días de seguimiento, el burndown real y la Sprint Review con dos personas externas. No se afirma validación del outcome ni una nota completa. El Word es un apoyo; la entrega oficial exige texto con los enlaces de Miro, GitHub y MVP, más credenciales.
+Las citas C-01 a C-04 provienen del caso docente y no se presentan como entrevistas propias. Están pendientes las tres entrevistas, el experimento ejecutado, la capacidad real, los cinco días de seguimiento, el burndown real y la Sprint Review con dos personas externas. No se afirma validación del outcome ni una nota completa. La entrega oficial exige texto con los enlaces de Miro, GitHub y MVP, más credenciales.
 
 ## Alcance
 

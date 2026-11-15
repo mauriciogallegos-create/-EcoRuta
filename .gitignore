@@ -6,4 +6,5 @@ node_modules/
 dist/
 *.tar.gz
 *.sqlite*
+.netlify/
 
